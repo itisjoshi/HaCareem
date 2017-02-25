@@ -63,19 +63,22 @@ Returns UserModel POST /user/create
 Returns UserModel PUT /user/edit 
 Returns UserModel DELETE /user/delete 
 
-`UserModel:
+```javascript
+UserModel:
 {
 	Long userId;
 	String name;
 	String email;
-}`
+}
+```
 
 Returns DriverModel GET /driver/list 
 Returns DriverModel POST /driver/create 
 Returns DriverModel PUT /driver/edit 
 Returns DriverModel DELETE /driver/delete 
 
-`DriverModel:
+```javascript
+DriverModel:
 {
 	Long driverId;
 	String bookingStatus;
@@ -89,14 +92,16 @@ Returns DriverModel DELETE /driver/delete
 	String rating;
 	Double latitude;	
 	Double longitude;
-}`
+}
+```
 
 Returns CustomerModel GET /customer/list 
 Returns CustomerModel POST /customer/create 
 Returns CustomerModel PUT /customer/edit 
 Returns CustomerModel DELETE /customer/delete 
 
-`CustomerModel: 
+```javascript
+CustomerModel: 
 {
 	String preference;
 	Long customerId;
@@ -104,7 +109,8 @@ Returns CustomerModel DELETE /customer/delete
 	String email;
 	String gender;
 	Long userId;
-}`
+}
+```
 
 
 Returns CustomerModel GET /cab/list 
@@ -112,17 +118,21 @@ Returns CustomerModel POST /cab/create
 Returns CustomerModel PUT /cab/edit 
 Returns CustomerModel DELETE /cab/delete 
 
-`CustomerModel
+```javascript
+CustomerModel
 {
   Long cabId;
   CabType cabType;
   Long seatsCount;
-}`
+}
+```
 
-`CabType {
+```javascript
+CabType {
 	SHARE,
 	PRIME
-}`
+}
+```
 
 
 

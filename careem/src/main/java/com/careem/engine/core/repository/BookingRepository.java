@@ -9,10 +9,6 @@ import com.careem.engine.core.model.Booking;
 
 public interface BookingRepository extends CrudRepository<Booking, Long> {
 
-	@Query("SELECT Booking FROM "
-			+ "Booking booking "
-			+ "LEFT JOIN FETCH booking.customer customer "
-			+ "LEFT JOIN FETCH booking.driver driver")
 	public Booking findById(Long id);
 	
 	@Query("SELECT SUM(COST) FROM "

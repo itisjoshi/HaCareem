@@ -14,7 +14,6 @@ import com.careem.engine.core.repository.BookingRepository;
 @Service("BookingService")
 @Repository
 @Transactional
-
 public class BookingServiceImpl implements BookingService {
 
 	@Autowired

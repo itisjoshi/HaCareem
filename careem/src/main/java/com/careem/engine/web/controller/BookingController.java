@@ -40,10 +40,10 @@ public class BookingController {
 		return bookingWebService.updateRating(id, rating);
 	}
 
-	@RequestMapping(value = "/book/updatecablocation/{id}/{latitude}/{longitude}", method = RequestMethod.GET)
+	@RequestMapping(value = "/book/updatecablocation/{driverid}/{latitude}/{longitude}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public @ResponseBody BookingModel updatecabCurrentLocation(@PathVariable("id") Long id, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
-		return bookingWebService.updatecabCurrentLocation(id, latitude, longitude);
+	public @ResponseBody void updatecabCurrentLocation(@PathVariable("driverid") Long id, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
+		bookingWebService.updatecabCurrentLocation(id, latitude, longitude);
 	}
 	
 	@RequestMapping(value = "/book/getcablocation/{id}/{latitude}/{longitude}", method = RequestMethod.GET)

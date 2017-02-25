@@ -41,8 +41,14 @@ default settings like switching driver gender and Minimum driver rating as well.
 In order to prevent Race Condition upon booking a Queueing system is used for a specific driver.
 The location of the driver is get trakced for every 30 seconds and we are using a Amazon SQS queue to process the location queue. We are using Redis to keep track of the moving car with the customer latitude and longitude until the destination is reached. We can lively locate a vehicle. After the destination is reached location data is moved to mysql from redis.
 
+Technology & Architecture used:
 
-
+SPRING MVC
+Hibernate
+MySql(All Meta informations)
+Redis(frequest changes to the current location of the cab is stored here.)
+SQS(Location Changes Information will be stored by lining up in Amazon SQS)
+Queuing System(To Prevent Race Condition, an internal queuing system is used)
 
 API Calls:
 

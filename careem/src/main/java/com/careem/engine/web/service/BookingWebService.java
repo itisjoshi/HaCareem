@@ -20,6 +20,7 @@ public class BookingWebService {
 	
 	public BookingModel getDriver(Long customerid, double latitude, double longitude) {
 		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -28,7 +29,7 @@ public class BookingWebService {
 		Booking booking = bookingService.findById(id);
 		double totalCost = 0.0;
 		
-		int distance = Integer.parseInt(booking.getDistanceTravelled());
+		Long distance = Long.parseLong(booking.getDistanceTravelled());
 		String cabType = booking.getDriver().getCab().getCabType().toString();
 		
 		switch(cabType) {
@@ -36,6 +37,7 @@ public class BookingWebService {
 			case "PRIME" : totalCost = distance * PER_KILOMETER_RATE_PRIME; break;
 		}
 		booking.setCost(totalCost);	
+		booking.setDistanceTravelled(distance.toString());
 		return null;
 	}
 

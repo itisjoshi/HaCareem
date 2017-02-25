@@ -249,7 +249,7 @@ public class BookingWebService {
 		driver.setLatitude(latitude);
 		driver.setLongitude(longitude);
 		driver.setBookingStatus("AVAILABLE");
-		driverService.save(driver);
+		driver = driverService.save(driver);
 		booking.setDriver(driver);
 		return convertBookingToBookingModel(booking);
 	}
@@ -295,6 +295,16 @@ public class BookingWebService {
 		bookingModel.setRating(booking.getRating());
 		bookingModel.setDriverId(booking.getDriver().getId());
 		return bookingModel;
+	}
+
+	public void cancelbooking(Long id) {
+		// TODO Auto-generated method stub
+		Booking booking = bookingService.findById(id);
+		Driver driver = driverService.findById(booking.getDriver().getId());
+		driver.setLastDriveFinishedDate(new Date());
+		driver.setBookingStatus("AVAILABLE");
+		driver = driverService.save(driver);
+		bookingService.delete(booking);
 	}
 
 }

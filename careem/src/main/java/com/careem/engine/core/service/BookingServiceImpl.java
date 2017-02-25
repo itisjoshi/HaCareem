@@ -53,7 +53,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<Driver> findByDriver(Driver driver) {
+	public List<Booking> findByDriver(Driver driver) {
 		// TODO Auto-generated method stub
 		return bookingRepository.findByDriver(driver);
 	}

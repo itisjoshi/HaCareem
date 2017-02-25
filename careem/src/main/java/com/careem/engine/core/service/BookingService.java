@@ -12,5 +12,5 @@ public interface BookingService {
 	public List<Booking> findAll();
 	public Booking findById(Long id);
 	public double getDriverCurrentDayWage(Date date, Long driverId);
-	public List<Driver> findByDriver(Driver driver);
+	public List<Booking> findByDriver(Driver driver);
 }

@@ -16,10 +16,18 @@ public interface BookingRepository extends CrudRepository<Booking, Long> {
 	@Query("SELECT booking FROM "
 			+ "Booking booking "
 			+ "LEFT JOIN FETCH booking.driver driver "
+			+ "LEFT JOIN FETCH driver.cab cab "
+			+ "LEFT JOIN FETCH booking.customer customer "
 			+ "WHERE driver.id = ?2 "
 			+ "AND booking.lastDriveFinishedDate = ?1")
 	public List<Booking> getDriverCurrentDayWage(Date date, Long driverId);
 
-	public List<Driver> findByDriver(Driver driver);
+	@Query("SELECT booking FROM "
+			+ "Booking booking "
+			+ "LEFT JOIN FETCH booking.driver driver "
+			+ "LEFT JOIN FETCH driver.cab cab "
+			+ "LEFT JOIN FETCH booking.customer customer "
+			+ "WHERE driver = ?1")
+	public List<Booking> findByDriver(Driver driver);
 	
 }

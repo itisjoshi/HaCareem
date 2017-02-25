@@ -51,4 +51,11 @@ public class BookingController {
 	public @ResponseBody HashMap<String, Double> getcabCurrentLocation(@PathVariable("id") Long id) {
 		return bookingWebService.getcabCurrentLocation(id);
 	}
+	
+	@RequestMapping(value = "/book/cancelbooking/{id}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody void cancelbooking(@PathVariable("id") Long id) {
+		bookingWebService.cancelbooking(id);
+	}
+
 }

@@ -16,8 +16,26 @@ public class BookingController {
 	
 	@RequestMapping(value = "/book/{customerid}/{latitude}/{longitude}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public @ResponseBody DriverModel getDriver(@PathVariable("customerid") Long customerid, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
+	public @ResponseBody BookingModel getDriver(@PathVariable("customerid") Long customerid, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
 		return bookingWebService.getDriver(customerid, latitude, longitude);
 	}
-	
+
+	@RequestMapping(value = "/book/generatecost/{id}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody BookingModel getDriver(@PathVariable("id") Long id) {
+		return bookingWebService.generateCost(id);
+	}
+
+	@RequestMapping(value = "/book/updatedrop/{id}/{latitude}/{longitude}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody BookingModel updateDropTime(@PathVariable("id") Long id, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
+		return bookingWebService.updateDropTime(id, latitude, longitude);
+	}
+
+	@RequestMapping(value = "/book/updaterating/{id}/{rating}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody BookingModel updateRating(@PathVariable("id") Long id, @PathVariable("rating") String rating) {
+		return bookingWebService.updateRating(id, rating);
+	}
+
 }

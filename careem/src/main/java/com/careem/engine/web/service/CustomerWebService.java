@@ -1,5 +1,7 @@
 package com.careem.engine.web.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,29 +24,56 @@ public class CustomerWebService {
 	
 	public List<CustomerModel> getAllCustomers() {
 		// TODO Auto-generated method stub
-		return null;
+		List<CustomerModel> customerModels = new ArrayList<CustomerModel>();
+		List<Customer> customers = customerService.findAll();
+		Iterator<Customer> customerIterator = customers.iterator();
+		while(customerIterator.hasNext()) {
+			Customer customer = customerIterator.next();
+			CustomerModel customerModel = new CustomerModel();
+			customerModel.setCustomerId(customer.getId());
+			customerModel.setEmail(customer.getUser().getEmail());
+			customerModel.setGender(customer.getUser().getGender());
+			customerModel.setName(customer.getUser().getName());
+			customerModel.setPreference(customer.getPreference());
+			customerModel.setUserId(customer.getUser().getId());
+			customerModels.add(customerModel);
+		}
+		return customerModels;
 	}
 
-	public CustomerModel createCustomer(CustomerModel userModel) {
+	public CustomerModel createCustomer(CustomerModel customerModel) {
 		// TODO Auto-generated method stub
 		User user = new User();
-		user.setEmail(userModel.getEmail());
-		user.setGender(userModel.getGender());
-		user.setName(userModel.getName());
+		user.setEmail(customerModel.getEmail());
+		user.setGender(customerModel.getGender());
+		user.setName(customerModel.getName());
 		user = userService.save(user);
 		Customer customer = new Customer();
-		customer.setPreference(userModel.getPreference());
+		customer.setPreference(customerModel.getPreference());
 		customer.setUser(user);
-		customerService.save(customer);
-		return null;
+		customer = customerService.save(customer);
+		customerModel.setCustomerId(customer.getId());
+		customerModel.setUserId(user.getId());
+		return customerModel;
 	}
 
-	public CustomerModel editCustomer(CustomerModel userModel) {
+	public CustomerModel editCustomer(CustomerModel customerModel) {
 		// TODO Auto-generated method stub
-		return null;
+		User user = userService.findById(customerModel.getUserId());
+		user.setEmail(customerModel.getEmail());
+		user.setGender(customerModel.getGender());
+		user.setName(customerModel.getName());
+		user = userService.save(user);
+		Customer customer = customerService.findById(customerModel.getCustomerId());
+		customer.setPreference(customerModel.getPreference());
+		customer.setUser(user);
+		customer = customerService.save(customer);
+		customerModel.setCustomerId(customer.getId());
+		customerModel.setUserId(user.getId());
+		return customerModel;
 	}
 
-	public CustomerModel deleteCustomer(CustomerModel userModel) {
+	public CustomerModel deleteCustomer(CustomerModel customerModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

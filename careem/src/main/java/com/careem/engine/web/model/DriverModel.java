@@ -2,9 +2,11 @@ package com.careem.engine.web.model;
 
 import java.util.Date;
 
+import com.careem.engine.core.model.CabType;
+
 public class DriverModel {
 
-	public Long id;
+	public Long driverId;
 	
 	public String bookingStatus;
 
@@ -18,7 +20,7 @@ public class DriverModel {
 
 	private Long cabid;
 	
-	private String cabType;
+	private CabType cabType;
 	
 	public String gender;
 
@@ -28,12 +30,12 @@ public class DriverModel {
 	
 	public Double longitude;
 
-	public Long getId() {
-		return id;
+	public Long getDriverId() {
+		return driverId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setDriverId(Long driverId) {
+		this.driverId = driverId;
 	}
 
 	public String getBookingStatus() {
@@ -84,11 +86,11 @@ public class DriverModel {
 		this.cabid = cabid;
 	}
 
-	public String getCabType() {
+	public CabType getCabType() {
 		return cabType;
 	}
 
-	public void setCabType(String cabType) {
+	public void setCabType(CabType cabType) {
 		this.cabType = cabType;
 	}
 

@@ -22,9 +22,6 @@ public class Booking extends AbstractEntity {
 	 */
 	private static final long serialVersionUID = -1547980297528908216L;
 
-	@Column(name = "BOOKINGSTATUS", length = 250)
-	public String bookingStatus;
-
 	@Column(name = "LASTDRIVEFINISHEDDATE")
 	private Date lastDriveFinishedDate;
 
@@ -65,14 +62,6 @@ public class Booking extends AbstractEntity {
 	
 	@Column(name = "DRIVERENDLONGITUDE")
 	public Double driverEndLongitude;
-
-	public String getBookingStatus() {
-		return bookingStatus;
-	}
-
-	public void setBookingStatus(String bookingStatus) {
-		this.bookingStatus = bookingStatus;
-	}
 
 	public Date getLastDriveFinishedDate() {
 		return lastDriveFinishedDate;

@@ -18,13 +18,13 @@ Design patterns, dependency injection etc.
 We will be judging you on the following criteria:
 
 ## Judging Criteria
-..* Innovativeness
-..* Architecture
-..* Manageability and Scalability
-..* Application Performance
-..* Code Toxicity
-..* Robustness
-..* Completeness (Demoable)
+1. Innovativeness
+2. Architecture
+3. Manageability and Scalability
+4. Application Performance
+5. Code Toxicity
+6. Robustness
+7. Completeness (Demoable)
 
 
 
@@ -52,9 +52,9 @@ The location of the driver is get trakced for every 30 seconds and we are using 
 
 ## Installation 
 
-..* mvn clean
-..* mvn install
-..* mvn deploy
+1. mvn clean
+2. mvn install
+3. mvn deploy
 
 ## API Calls:
 

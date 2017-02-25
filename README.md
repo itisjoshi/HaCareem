@@ -142,7 +142,7 @@ CabModel
 
 ```javascript
 CabType {
-	SHARE,
+	MINI,
 	PRIME
 }
 ```
@@ -158,6 +158,31 @@ CabType {
 |BookingModel|GET        |/booking/updatecablocation/{driverid}/{latitude}/{longitude} |
 |HashMap<String, Double>| GET | /book/getcablocation/{driverid}|
 |void| GET | /book/cancelbooking/{driverid}|
+
+
+```javascript
+BookingModel {
+	Date lastDriveFinishedDate;
+	Long customerId;
+	Long driverId;
+	String preference;
+	Date lastDrive;
+	String bookingStatus;
+	CabType cabType;
+	Long seatsCount;
+	String distanceTravelled;
+	String rating;
+	Double cost;
+	String costDenomination;
+	Double customerFromLatitude;
+	Double customerFromlongitude;
+	Double driverFromLatitude;
+	Double driverFromLongitude;
+	Double driverEndLatitude;
+	Double driverEndLongitude;
+}
+```
+
 
 # Contributors
 

@@ -58,10 +58,12 @@ The location of the driver is get trakced for every 5 seconds and we are using a
 
 ## API Calls:
 
-Returns UserModel GET /user/list 
-Returns UserModel POST /user/create 
-Returns UserModel PUT /user/edit 
-Returns UserModel DELETE /user/delete 
+|Return Type|Request Method|URL Mapping  |
+|-----------|--------------|------------ |
+|List<UserModel>  |GET           |/user/list   |
+|UserModel  |POST          |/user/create |
+|UserModel  |PUT           |/user/edit   |
+|UserModel  |DELETE        |/user/delete |
 
 ```javascript
 UserModel:
@@ -72,10 +74,13 @@ UserModel:
 }
 ```
 
-Returns DriverModel GET /driver/list 
-Returns DriverModel POST /driver/create 
-Returns DriverModel PUT /driver/edit 
-Returns DriverModel DELETE /driver/delete 
+
+|Return Type|Request Method|URL Mapping    |
+|-----------|--------------|------------   |
+|List<DriverModel>|GET           |/driver/list   |
+|DriverModel|POST          |/driver/create |
+|DriverModel|PUT           |/driver/edit   |
+|DriverModel|DELETE        |/driver/delete |
 
 ```javascript
 DriverModel:
@@ -99,6 +104,13 @@ Returns CustomerModel GET /customer/list
 Returns CustomerModel POST /customer/create 
 Returns CustomerModel PUT /customer/edit 
 Returns CustomerModel DELETE /customer/delete 
+
+|Return Type|Request Method|URL Mapping  |
+|-----------|--------------|------------ |
+|List<CustomerModel>|GET           |/customer/list   |
+|CustomerModel|POST          |/customer/create |
+|CustomerModel|PUT           |/customer/edit   |
+|CustomerModel|DELETE        |/customer/delete |
 
 ```javascript
 CustomerModel: 

@@ -5,10 +5,13 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -22,12 +25,14 @@ public class Booking extends AbstractEntity {
 	@Column(name = "LASTDRIVEFINISHEDDATE")
 	private Date lastDriveFinishedDate;
 
-	@OneToOne(targetEntity = Customer.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "CUSTOMERID",referencedColumnName = "ID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CUSTOMERID")
+	@JsonBackReference(value="booking-customer")
 	private Customer customer;
 	
-	@OneToOne(targetEntity = Driver.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DRIVEID", referencedColumnName="ID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DRIVERID")
+	@JsonBackReference(value="booking-driver")
 	private Driver driver;
 	
 	@Column(name = "DISTANCETRAVELLED", length = 250)

@@ -1,6 +1,7 @@
 package com.careem.engine.core.service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.careem.engine.core.model.Booking;
+import com.careem.engine.core.model.Driver;
 import com.careem.engine.core.repository.BookingRepository;
 
 @Service("BookingService")
@@ -41,6 +43,18 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public double getDriverCurrentDayWage(Date date, Long driverId) {
-		return bookingRepository.getDriverCurrentDayWage(date, driverId);
+		List<Booking> bookings = bookingRepository.getDriverCurrentDayWage(date, driverId);
+		Iterator<Booking> bookingIterator = bookings.iterator();
+		double sum = 0.0;
+		while(bookingIterator.hasNext()) {
+			sum = sum + bookingIterator.next().getCost();
+		}
+		return sum;
+	}
+
+	@Override
+	public List<Driver> findByDriver(Driver driver) {
+		// TODO Auto-generated method stub
+		return bookingRepository.findByDriver(driver);
 	}
 }

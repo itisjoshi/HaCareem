@@ -1,11 +1,13 @@
 package com.careem.engine.core.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,6 +31,17 @@ public class Customer extends AbstractEntity {
 	@JoinColumn(name = "USERID", referencedColumnName = "ID")
 	private User user;
 	
+	@OneToMany(mappedBy="customer")
+	private Set<Booking> bookings;
+	
+	public Set<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(Set<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
 	public User getUser() {
 		return user;
 	}

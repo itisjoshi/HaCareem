@@ -1,19 +1,25 @@
 package com.careem.engine.core.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.careem.engine.core.model.Booking;
+import com.careem.engine.core.model.Driver;
 
 public interface BookingRepository extends CrudRepository<Booking, Long> {
 
 	public Booking findById(Long id);
 	
-	@Query("SELECT SUM(COST) FROM "
-			+ "Booking booking WHERE booking.driverId = ?2"
+	@Query("SELECT booking FROM "
+			+ "Booking booking "
+			+ "LEFT JOIN FETCH booking.driver driver "
+			+ "WHERE driver.id = ?2 "
 			+ "AND booking.lastDriveFinishedDate = ?1")
-	public double getDriverCurrentDayWage(Date date, Long driverId);
+	public List<Booking> getDriverCurrentDayWage(Date date, Long driverId);
+
+	public List<Driver> findByDriver(Driver driver);
 	
 }

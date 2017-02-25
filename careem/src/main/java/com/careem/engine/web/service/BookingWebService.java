@@ -9,17 +9,16 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.careem.engine.core.model.Booking;
+import com.careem.engine.core.model.Customer;
 import com.careem.engine.core.model.Driver;
 import com.careem.engine.core.service.BookingService;
+import com.careem.engine.core.service.CustomerService;
 import com.careem.engine.core.service.DriverService;
 import com.careem.engine.web.model.BookingModel;
 
@@ -33,7 +32,7 @@ public class BookingWebService {
 	private DriverService driverService;
 	
 	@Autowired
-	private BookingWebService bookingWebService;
+	private CustomerService customerService;
 	
 	public static final int PER_KILOMETER_RATE_MINI = 7; // Rate Per Kilometer - Mini
 	public static final int PER_KILOMETER_RATE_PRIME = 15; // Rate Per Kilometer - Prime
@@ -67,7 +66,7 @@ public class BookingWebService {
 			millisMap.put(drivers.get(i).getId(), millisecond);
 		}
 		
-		Map<Long, Long> sortedMap = bookingWebService.sortByValue(millisMap);
+		Map<Long, Long> sortedMap = sortByValue(millisMap);
 		
 		for(Map.Entry<Long, Long> entry: sortedMap.entrySet()) {
 			
@@ -119,7 +118,7 @@ public class BookingWebService {
 		
 		for(int i = 0; i < drivers.size(); i++) {
 			
-			int currentMinimumDistance = (int) bookingWebService.minimumDistanceFinder(customerLatitude,customerLongitude , 
+			int currentMinimumDistance = (int) minimumDistanceFinder(customerLatitude,customerLongitude , 
 															      drivers.get(i).latitude, drivers.get(i).longitude);
 			
 			if(minimumDistance < currentMinimumDistance) {
@@ -165,6 +164,7 @@ public class BookingWebService {
 	
 	public BookingModel getDriver(Long customerid, double latitude, double longitude) {
 		
+		BookingModel bookingModel = new BookingModel();
 		List<Driver> driversWithinDistance = getDriverListWithinDistance(latitude, longitude);
 		
 		if(!driversWithinDistance.isEmpty()) {
@@ -183,24 +183,48 @@ public class BookingWebService {
 						return null;
 					} else {
 						// return shortestDistanceDriver;
+						bookingModel = createbooking(shortestDistanceDriver, customerid, latitude, longitude);
 					}
 					
 				} else {
 					// return maximumWaitedTimeDriver;
+					bookingModel = createbooking(maximumWaitedTimeDriver, customerid, latitude, longitude);
 				}
 				
 			} else {
 				// return minimumWageDriver;
+				bookingModel = createbooking(minimumWageDriver, customerid, latitude, longitude);				
 			}
 		}
-		return null;
+		return bookingModel;
+	}
+
+	private BookingModel createbooking(Driver driver, Long customerid, double latitude, double longitude) {
+		// TODO Auto-generated method stub
+		BookingModel bookingModel = new BookingModel();
+		Booking booking = new Booking();
+		Customer customer = customerService.findById(customerid);
+		booking.setCustomer(customer);
+		booking.setCustomerFromLatitude(latitude);
+		booking.setCustomerFromlongitude(longitude);
+		booking.setDriver(driver);
+		booking = bookingService.save(booking);
+		driver = driverService.findById(booking.getDriver().getId());
+		driver.setLastDriveFinishedDate(new Date());
+		driver.setLatitude(latitude);
+		driver.setLongitude(longitude);
+		driver.setBookingStatus("NOTAVAILABLE");
+		driverService.save(driver);
+		return bookingModel;
 	}
 
 	public BookingModel generateCost(Long id) {
-		
+		BookingModel bookingModel = new BookingModel();
 		Booking booking = bookingService.findById(id);
 		double totalCost = 0.0;
-		
+		if(booking.getCost() != null || booking.getCost() != 0) {
+			return bookingModel;
+		}
 		Long distance = Long.parseLong(booking.getDistanceTravelled());
 		String cabType = booking.getDriver().getCab().getCabType().toString();
 		
@@ -210,7 +234,8 @@ public class BookingWebService {
 		}
 		booking.setCost(totalCost);	
 		booking.setDistanceTravelled(distance.toString());
-		return null;
+		booking = bookingService.save(booking);
+		return convertBookingToBookingModel(booking);
 	}
 
 	public BookingModel updateDropTime(Long id, double latitude, double longitude) {
@@ -219,7 +244,14 @@ public class BookingWebService {
 		booking.setDriverEndLatitude(latitude);
 		booking.setDriverEndLongitude(longitude);
 		booking = bookingService.save(booking);
-		return null;
+		Driver driver = driverService.findById(booking.getDriver().getId());
+		driver.setLastDriveFinishedDate(new Date());
+		driver.setLatitude(latitude);
+		driver.setLongitude(longitude);
+		driver.setBookingStatus("AVAILABLE");
+		driverService.save(driver);
+		booking.setDriver(driver);
+		return convertBookingToBookingModel(booking);
 	}
 
 	public BookingModel updateRating(Long id, String rating) {
@@ -227,7 +259,13 @@ public class BookingWebService {
 		Booking booking = bookingService.findById(id);
 		booking.setRating(rating);
 		booking = bookingService.save(booking);
-		return null;
+		Driver driver = driverService.findById(booking.getDriver().getId());
+		Long oldRating = Long.parseLong(driver.getRating());
+		Long totalDrives = bookingService.findByDriver(driver).size() + 0L;
+		Long newRating = ((oldRating * totalDrives) + Long.parseLong(rating))/(totalDrives+1);
+		driver.setRating(newRating.toString());
+		driver = driverService.save(driver);
+		return convertBookingToBookingModel(booking);
 	}
 
 	public BookingModel updatecabCurrentLocation(Long id, double latitude, double longitude) {
@@ -239,4 +277,24 @@ public class BookingWebService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	private BookingModel convertBookingToBookingModel(Booking booking) {
+		// TODO Auto-generated method stub
+		BookingModel bookingModel = new BookingModel();
+		bookingModel.setBookingStatus(booking.getDriver().getBookingStatus());
+		bookingModel.setCabType(booking.getDriver().getCab().getCabType());
+		bookingModel.setCost(booking.getCost());
+		bookingModel.setCostDenomination(booking.getCostDenomination());
+		bookingModel.setCustomerFromLatitude(booking.getCustomerFromLatitude());
+		bookingModel.setCustomerFromlongitude(booking.getCustomerFromlongitude());
+		bookingModel.setCustomerId(booking.getCustomer().getId());
+		bookingModel.setDistanceTravelled(booking.getDistanceTravelled());
+		bookingModel.setDriverEndLatitude(booking.getDriverEndLatitude());
+		bookingModel.setDriverEndLongitude(booking.getDriverEndLongitude());
+		bookingModel.setSeatsCount(booking.getDriver().getCab().getSeatsCount());
+		bookingModel.setRating(booking.getRating());
+		bookingModel.setDriverId(booking.getDriver().getId());
+		return bookingModel;
+	}
+
 }

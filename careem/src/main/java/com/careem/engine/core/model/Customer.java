@@ -27,8 +27,8 @@ public class Customer extends AbstractEntity {
 	@Column(name = "LASTDRIVE")
 	private Date lastDrive;
 
-	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "USERID", referencedColumnName = "ID")
+	@OneToOne
+	@JoinColumn(name = "USERID")
 	private User user;
 	
 	@OneToMany(mappedBy="customer")

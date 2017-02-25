@@ -2,6 +2,7 @@ package com.careem.engine.core.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,6 +23,29 @@ public class User extends AbstractEntity {
 
 	@Column(name = "GENDER", length = 250)
 	public String gender;
+
+
+	@OneToOne(mappedBy="user")
+	private Customer customer;
+	
+	@OneToOne(mappedBy="user")
+	private Driver driver;
+	
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
 	public String getGender() {
 		return gender;

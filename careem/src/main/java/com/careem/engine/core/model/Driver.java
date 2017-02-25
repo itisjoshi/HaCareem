@@ -27,8 +27,8 @@ public class Driver extends AbstractEntity {
 	@Column(name = "LASTDRIVEFINISHEDDATE")
 	private Date lastDriveFinishedDate;
 
-	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "USERID", referencedColumnName = "ID")
+	@OneToOne
+	@JoinColumn(name = "USERID")
 	private User user;
 	
 	@OneToOne(targetEntity=Cab.class,cascade=CascadeType.ALL)

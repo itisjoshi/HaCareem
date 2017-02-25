@@ -30,8 +30,7 @@ public class RestAuthenticationSuccessHandler
 			final HttpServletResponse response,
 			final Authentication authentication)
 			throws ServletException, IOException {
-		final SavedRequest savedRequest = requestCache
-				.getRequest(request, response);
+		final SavedRequest savedRequest = requestCache.getRequest(request, response);
 		
 		if (savedRequest == null) {
 			clearAuthenticationAttributes(request);
@@ -39,14 +38,11 @@ public class RestAuthenticationSuccessHandler
 		}
 		
 		final String targetUrlParameter = getTargetUrlParameter();
-		if (isAlwaysUseDefaultTargetUrl()
-				|| (targetUrlParameter != null && StringUtils.hasText(request
-						.getParameter(targetUrlParameter)))) {
+		if (isAlwaysUseDefaultTargetUrl() || (targetUrlParameter != null && StringUtils.hasText(request.getParameter(targetUrlParameter)))) {
 			requestCache.removeRequest(request, response);
 			clearAuthenticationAttributes(request);
 			return;
 		}
-		
 		clearAuthenticationAttributes(request);
 	}
 }

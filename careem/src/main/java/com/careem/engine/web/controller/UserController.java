@@ -41,5 +41,4 @@ public class UserController {
 	public @ResponseBody UserModel deleteUser(@RequestBody UserModel userModel) {
 		return userWebService.deleteUser(userModel);
 	}
-
 }

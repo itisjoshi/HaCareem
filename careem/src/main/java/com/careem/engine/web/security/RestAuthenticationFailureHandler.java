@@ -17,8 +17,7 @@ public class RestAuthenticationFailureHandler
 	extends SimpleUrlAuthenticationFailureHandler {
 
 	@Override
-	public void onAuthenticationFailure(HttpServletRequest request,
-			HttpServletResponse response, AuthenticationException exception)
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws ServletException, IOException {
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		

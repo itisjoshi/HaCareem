@@ -2,10 +2,7 @@ package com.careem.engine.web.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.careem.engine.web.model.*;
-import com.careem.engine.web.service.CabWebService;
 import com.careem.engine.web.service.CabWebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +39,4 @@ public class CabController {
 	public @ResponseBody CabModel deleteCab(@RequestBody CabModel userModel) {
 		return cabService.deleteCab(userModel);
 	}
-
 }

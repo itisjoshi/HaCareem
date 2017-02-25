@@ -12,7 +12,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 	public Customer findById(Long id);
 	
 	@Query("SELECT customer FROM "
-				+ "Customer customer "
-				+ "LEFT JOIN FETCH customer.user user")
+		    + "Customer customer "
+		    + "LEFT JOIN FETCH customer.user user")
 	List<Customer> findAll();
 }

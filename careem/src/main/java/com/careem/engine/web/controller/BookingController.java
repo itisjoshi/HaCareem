@@ -51,5 +51,4 @@ public class BookingController {
 	public @ResponseBody HashMap<String, Double> getcabCurrentLocation(@PathVariable("id") Long id) {
 		return bookingWebService.getcabCurrentLocation(id);
 	}
-	
 }

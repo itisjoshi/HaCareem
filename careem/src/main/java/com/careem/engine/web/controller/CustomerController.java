@@ -2,8 +2,6 @@ package com.careem.engine.web.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.careem.engine.web.model.*;
 import com.careem.engine.web.service.CustomerWebService;
 
@@ -41,5 +39,4 @@ public class CustomerController {
 	public @ResponseBody CustomerModel deleteCustomer(@RequestBody CustomerModel userModel) {
 		return customerWebService.deleteCustomer(userModel);
 	}
-
 }

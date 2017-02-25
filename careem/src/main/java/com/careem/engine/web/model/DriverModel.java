@@ -125,5 +125,4 @@ public class DriverModel {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-	
 }

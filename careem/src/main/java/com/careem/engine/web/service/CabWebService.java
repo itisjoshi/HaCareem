@@ -18,7 +18,6 @@ public class CabWebService {
 	private CabService cabService;
 	
 	public List<CabModel> getAllCabs() {
-		// TODO Auto-generated method stub
 		List<Cab> cabs = cabService.findAll();
 		List<CabModel> cabModels = new ArrayList<CabModel>();
 		Iterator<Cab> cabIterator = cabs.iterator();
@@ -33,7 +32,6 @@ public class CabWebService {
 	}
 
 	public CabModel createCab(CabModel cabModel) {
-		// TODO Auto-generated method stub
 		Cab cab = new Cab();
 		cab.setSeatsCount(cab.getSeatsCount());
 		cab.setCabType(cab.getCabType());
@@ -45,7 +43,6 @@ public class CabWebService {
 	}
 
 	public CabModel editCab(CabModel cabModel) {
-		// TODO Auto-generated method stub
 		Cab cab = cabService.findById(cabModel.getCabId());
 		cab.setSeatsCount(cab.getSeatsCount());
 		cab.setCabType(cab.getCabType());
@@ -57,10 +54,8 @@ public class CabWebService {
 	}
 
 	public CabModel deleteCab(CabModel cabModel) {
-		// TODO Auto-generated method stub
 		Cab cab = cabService.findById(cabModel.getCabId());
 		cabService.delete(cab);		
 		return null;
 	}
-
 }

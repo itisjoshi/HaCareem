@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.careem.engine.core.model.User;
 import com.careem.engine.core.repository.UserRepository;
 
-
 @Service("UserService")
 @Repository
 @Transactional
@@ -22,26 +21,21 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User save(User user) {
-		// TODO Auto-generated method stub
 		return userRepository.save(user);
 	}
 
 	@Override
 	public void delete(User user) {
-		// TODO Auto-generated method stub
 		userRepository.save(user);
 	}
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
 		return (List<User>) userRepository.findAll();
 	}
 
 	@Override
 	public User findById(Long id) {
-		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
-
 }

@@ -7,7 +7,5 @@ public class EvaluateTestEvent extends ApplicationEvent {
 
 	public EvaluateTestEvent(Object source) {
 		super(source);
-		// TODO Auto-generated constructor stub
 	}
-
 }

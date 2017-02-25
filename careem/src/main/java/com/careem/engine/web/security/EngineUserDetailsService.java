@@ -13,14 +13,11 @@ import org.springframework.stereotype.Component;
 public class EngineUserDetailsService implements UserDetailsService {
 
 	@Override
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		String loggedUser = "";
-		String loggedUserPassword = "";
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		String loggedUser = "", loggedUserPassword = "";
 		Long userId = null;
 		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-
+		
 		UserDetails userDetails = new EngineUserDetails(loggedUser,
 				loggedUserPassword, Boolean.TRUE, Boolean.TRUE,
 				Boolean.TRUE,
@@ -28,5 +25,4 @@ public class EngineUserDetailsService implements UserDetailsService {
 		
 		return userDetails;
 	}
-
 }

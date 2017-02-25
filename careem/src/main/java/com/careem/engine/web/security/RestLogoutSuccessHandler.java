@@ -19,9 +19,7 @@ public class RestLogoutSuccessHandler implements LogoutSuccessHandler {
 			HttpServletResponse response, 
 			Authentication authentication) throws IOException,
 			ServletException {
-		// TODO Auto-generated method stub
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().flush();
 	}
-
 }

@@ -9,12 +9,11 @@ public class UserModel {
 	private String name;
 	
 	private String email;
-
-	public UserModel() {
 	
+	public UserModel() {
 	}
+
 	public UserModel(Long id, String email2, String name2) {
-		// TODO Auto-generated constructor stub
 		this.userId = id;
 		this.email = email2;
 		this.name = name2;
@@ -55,5 +54,4 @@ public class UserModel {
 		user.setName(userModel.getName());
 		return user;
 	}
-
 }

@@ -18,5 +18,4 @@ public class HibernateAwareObjectMapper extends ObjectMapper {
 		Hibernate4Module hibernate4Module = new Hibernate4Module();
 		return hibernate4Module;
 	}
-
 }

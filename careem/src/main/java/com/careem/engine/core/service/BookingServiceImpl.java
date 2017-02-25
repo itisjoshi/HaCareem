@@ -1,5 +1,6 @@
 package com.careem.engine.core.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.careem.engine.core.model.Booking;
 import com.careem.engine.core.repository.BookingRepository;
-
 
 @Service("BookingService")
 @Repository
@@ -22,26 +22,26 @@ public class BookingServiceImpl implements BookingService {
 	
 	@Override
 	public Booking save(Booking booking) {
-		// TODO Auto-generated method stub
 		return bookingRepository.save(booking);
 	}
 
 	@Override
 	public void delete(Booking booking) {
-		// TODO Auto-generated method stub
 		bookingRepository.save(booking);
 	}
 
 	@Override
 	public List<Booking> findAll() {
-		// TODO Auto-generated method stub
 		return (List<Booking>) bookingRepository.findAll();
 	}
 
 	@Override
 	public Booking findById(Long id) {
-		// TODO Auto-generated method stub
 		return bookingRepository.findById(id);
 	}
 
+	@Override
+	public double getDriverCurrentDayWage(Date date, Long driverId) {
+		return bookingRepository.getDriverCurrentDayWage(date, driverId);
+	}
 }

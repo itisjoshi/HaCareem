@@ -18,7 +18,6 @@ public class UserWebService {
 	private UserService userService;
 
 	public List<UserModel> getAllUsers() {
-		// TODO Auto-generated method stub
 		List<UserModel> userModels = new ArrayList<>();
 		List<User> users = userService.findAll();
 		Iterator<User> userIterator = users.iterator();
@@ -30,26 +29,21 @@ public class UserWebService {
 	}
 
 	public UserModel createUser(UserModel userModel) {
-		// TODO Auto-generated method stub
 		User user = new UserModel().UserModelToUserConvertor(userModel);
 		user = userService.save(user);
 		return new UserModel().UserToUserModelConvertor(user);
 	}
 
 	public UserModel editUser(UserModel userModel) {
-		// TODO Auto-generated method stub
 		User user = new UserModel().UserModelToUserConvertor(userModel);
 		user = userService.save(user);
 		return new UserModel().UserToUserModelConvertor(user);
 	}
 
 	public UserModel deleteUser(UserModel userModel) {
-		// TODO Auto-generated method stub
 		User user = new UserModel().UserModelToUserConvertor(userModel);
 		user.setDeleted(true);
 		user = userService.save(user);
 		return new UserModel().UserToUserModelConvertor(user);
 	}
-	
-	
 }

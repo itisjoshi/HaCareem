@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.careem.engine.core.model.Cab;
 import com.careem.engine.core.model.Driver;
-import com.careem.engine.core.model.Driver;
 import com.careem.engine.core.model.User;
 import com.careem.engine.core.service.CabService;
 import com.careem.engine.core.service.DriverService;
@@ -30,7 +29,6 @@ public class DriverWebService {
 	private CabService cabService;
 	
 	public List<DriverModel> getAllDrivers() {
-		// TODO Auto-generated method stub
 		List<DriverModel> driverModels = new ArrayList<DriverModel>();
 		List<Driver> drivers = driverService.findAll();
 		Iterator<Driver> driverIterator = drivers.iterator();
@@ -55,7 +53,6 @@ public class DriverWebService {
 	}
 
 	public DriverModel createDriver(DriverModel driverModel) {
-		// TODO Auto-generated method stub
 		User user = new User();
 		user.setEmail(driverModel.getEmail());
 		user.setGender(driverModel.getGender());
@@ -77,7 +74,6 @@ public class DriverWebService {
 	}
 
 	public DriverModel editDriver(DriverModel driverModel) {
-		// TODO Auto-generated method stub
 		User user = userService.findById(driverModel.getUserId());
 		user.setEmail(driverModel.getEmail());
 		user.setGender(driverModel.getGender());
@@ -99,8 +95,6 @@ public class DriverWebService {
 	}
 
 	public DriverModel deleteDriver(DriverModel driverModel) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

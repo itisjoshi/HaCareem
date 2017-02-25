@@ -12,7 +12,6 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
 	@Override
 	public String getCurrentAuditor() {
-		// TODO Auto-generated method stub
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser")) {
 			return "SYSTEM";
@@ -20,5 +19,4 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 			return ((EngineUserDetails) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUsername();			
 		}
 	}
-
 }

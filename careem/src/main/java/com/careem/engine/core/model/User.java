@@ -11,14 +11,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(name = "USER")
 @JsonInclude(Include.NON_EMPTY)
 public class User extends AbstractEntity {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 144659313932704942L;
-
-	public User() {
-		
-	}
 	
 	@Column(name = "NAME", length = 250)
 	public String name;
@@ -51,6 +45,5 @@ public class User extends AbstractEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
+	}	
 }

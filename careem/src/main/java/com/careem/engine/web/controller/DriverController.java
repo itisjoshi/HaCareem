@@ -2,11 +2,7 @@ package com.careem.engine.web.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.careem.engine.web.model.*;
-import com.careem.engine.web.service.DriverWebService;
-import com.careem.engine.web.service.DriverWebService;
 import com.careem.engine.web.service.DriverWebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +39,4 @@ public class DriverController {
 	public @ResponseBody DriverModel deleteDriver(@RequestBody DriverModel userModel) {
 		return driverWebService.deleteDriver(userModel);
 	}
-
 }

@@ -16,10 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(name = "DRIVER")
 @JsonInclude(Include.NON_EMPTY)
 public class Driver extends AbstractEntity {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -1547980297528908216L;
 
 	@Column(name = "BOOKINGSTATUS", length = 250)
@@ -28,13 +25,13 @@ public class Driver extends AbstractEntity {
 	@Column(name = "LASTDRIVEFINISHEDDATE")
 	private Date lastDriveFinishedDate;
 
-	@OneToOne(targetEntity=User.class,cascade=CascadeType.ALL)
-	@JoinColumn(name="USERID",referencedColumnName="ID")
-	private  User user;
+	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "USERID", referencedColumnName = "ID")
+	private User user;
 	
 	@OneToOne(targetEntity=Cab.class,cascade=CascadeType.ALL)
 	@JoinColumn(name="CABID",referencedColumnName="ID")
-	private  Cab cab;
+	private Cab cab;
 	
 	@Column(name = "GENDER", length = 250)
 	public String gender;
@@ -111,5 +108,4 @@ public class Driver extends AbstractEntity {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
-
 }

@@ -20,10 +20,6 @@ public class EngineUserDetails implements UserDetails {
 	private Boolean enabled;
 	private List<SimpleGrantedAuthority> authorities;
 	
-	public EngineUserDetails() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	public EngineUserDetails(String username, String password,
 			Boolean accountNonExpired, Boolean accountNonLocked,
 			Boolean credentialsNonLocked, Boolean enabled,
@@ -41,43 +37,36 @@ public class EngineUserDetails implements UserDetails {
 	
 	@Override
 	public Collection< ? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return accountNonExpired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return accountNonLocked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return credentialsNonLocked;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return enabled;
 	}
 
@@ -88,5 +77,4 @@ public class EngineUserDetails implements UserDetails {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
 }

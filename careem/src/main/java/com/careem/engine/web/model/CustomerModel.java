@@ -61,5 +61,4 @@ public class CustomerModel {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
 }

@@ -22,5 +22,4 @@ public class ExceptionControllerAdvice {
         List<FieldError> fieldErrors = result.getFieldErrors();
         return fieldErrors;
 	}
-
 }

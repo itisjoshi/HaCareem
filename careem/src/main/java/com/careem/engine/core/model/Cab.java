@@ -14,11 +14,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_EMPTY)
 public class Cab extends AbstractEntity {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6478353021149710915L;
-
 
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "CABTYPE")
@@ -41,7 +37,5 @@ public class Cab extends AbstractEntity {
 
 	public void setSeatsCount(Long seatsCount) {
 		this.seatsCount = seatsCount;
-	}
-
-	
+	}	
 }

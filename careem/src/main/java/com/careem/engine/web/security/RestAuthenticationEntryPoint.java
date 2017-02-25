@@ -18,8 +18,6 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 			HttpServletResponse response,
 			AuthenticationException authenticationException) throws IOException,
 			ServletException {
-		// TODO Auto-generated method stub
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 	}
-
 }

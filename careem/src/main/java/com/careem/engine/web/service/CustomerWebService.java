@@ -23,7 +23,6 @@ public class CustomerWebService {
 	private CustomerService customerService;
 	
 	public List<CustomerModel> getAllCustomers() {
-		// TODO Auto-generated method stub
 		List<CustomerModel> customerModels = new ArrayList<CustomerModel>();
 		List<Customer> customers = customerService.findAll();
 		Iterator<Customer> customerIterator = customers.iterator();
@@ -42,7 +41,6 @@ public class CustomerWebService {
 	}
 
 	public CustomerModel createCustomer(CustomerModel customerModel) {
-		// TODO Auto-generated method stub
 		User user = new User();
 		user.setEmail(customerModel.getEmail());
 		user.setGender(customerModel.getGender());
@@ -58,7 +56,6 @@ public class CustomerWebService {
 	}
 
 	public CustomerModel editCustomer(CustomerModel customerModel) {
-		// TODO Auto-generated method stub
 		User user = userService.findById(customerModel.getUserId());
 		user.setEmail(customerModel.getEmail());
 		user.setGender(customerModel.getGender());
@@ -74,8 +71,6 @@ public class CustomerWebService {
 	}
 
 	public CustomerModel deleteCustomer(CustomerModel customerModel) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

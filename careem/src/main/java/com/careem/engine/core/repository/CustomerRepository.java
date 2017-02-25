@@ -1,0 +1,11 @@
+package com.careem.engine.core.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.careem.engine.core.model.Customer;
+
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+
+	public Customer findById(Long id);
+	
+}

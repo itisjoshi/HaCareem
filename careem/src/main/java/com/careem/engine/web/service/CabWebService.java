@@ -32,18 +32,34 @@ public class CabWebService {
 		return cabModels;
 	}
 
-	public CabModel createCab(CabModel userModel) {
+	public CabModel createCab(CabModel cabModel) {
 		// TODO Auto-generated method stub
-		return null;
+		Cab cab = new Cab();
+		cab.setSeatsCount(cab.getSeatsCount());
+		cab.setCabType(cab.getCabType());
+		cab = cabService.save(cab);		
+		cabModel = new CabModel();
+		cabModel.setCabType(cab.getCabType());
+		cabModel.setSeatsCount(cab.getSeatsCount());
+		return cabModel;
 	}
 
-	public CabModel editCab(CabModel userModel) {
+	public CabModel editCab(CabModel cabModel) {
 		// TODO Auto-generated method stub
-		return null;
+		Cab cab = cabService.findById(cabModel.getCabId());
+		cab.setSeatsCount(cab.getSeatsCount());
+		cab.setCabType(cab.getCabType());
+		cab = cabService.save(cab);		
+		cabModel = new CabModel();
+		cabModel.setCabType(cab.getCabType());
+		cabModel.setSeatsCount(cab.getSeatsCount());
+		return cabModel;
 	}
 
-	public CabModel deleteCab(CabModel userModel) {
+	public CabModel deleteCab(CabModel cabModel) {
 		// TODO Auto-generated method stub
+		Cab cab = cabService.findById(cabModel.getCabId());
+		cabService.delete(cab);		
 		return null;
 	}
 

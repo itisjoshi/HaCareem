@@ -4,6 +4,16 @@ import com.careem.engine.core.model.CabType;
 
 public class CabModel {
 
+	Long cabId;
+	
+	public Long getCabId() {
+		return cabId;
+	}
+
+	public void setCabId(Long cabId) {
+		this.cabId = cabId;
+	}
+
 	protected CabType cabType;
 	
 	public Long seatsCount;

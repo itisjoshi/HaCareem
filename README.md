@@ -125,13 +125,14 @@ CustomerModel:
 ```
 
 
-Returns CustomerModel GET /cab/list 
-Returns CustomerModel POST /cab/create 
-Returns CustomerModel PUT /cab/edit 
-Returns CustomerModel DELETE /cab/delete 
-
+|Return Type|Request Method|URL Mapping  |
+|-----------|--------------|------------ |
+|List<CabModel>|GET           |/cab/list   |
+|CabModel|POST          |/cab/create |
+|CabModel|PUT           |/cab/edit   |
+|CabModel|DELETE        |/cab/delete |
 ```javascript
-CustomerModel
+CabModel
 {
   Long cabId;
   CabType cabType;
@@ -148,13 +149,14 @@ CabType {
 
 
 
-Returns BookingModel GET /booking/book/{customerid}/{latitude}/{longitude} 
-Returns BookingModel GET /booking/book/generatecost/{id} 
-Returns BookingModel GET /booking/book/updatedrop/{id}/{latitude}/{longitude}
-Returns BookingModel GET /booking/book/updaterating/{id}/{rating} 
-Returns BookingModel GET /booking/book/updatecablocation/{id}/{latitude}/{longitude} 
-Returns HashMap<String, Double> GET /book/getcablocation/{id}
-
+|Return Type|Request Method|URL Mapping  |
+|-----------|--------------|------------ |
+|BookingModel|GET           |/booking/book/{customerid}/{latitude}/{longitude}   |
+|BookingModel|GET          |booking/book/generatecost/{id} |
+|BookingModel|GET        |/booking/book/updatedrop/{id}/{latitude}/{longitude} |
+|BookingModel|GET        |/booking/book/updaterating/{id}/{rating} |
+|BookingModel|GET        |/booking/book/updatecablocation/{id}/{latitude}/{longitude} |
+|HashMap<String, Double>| GET | /book/getcablocation/{id}|
 
 # Contributors
 

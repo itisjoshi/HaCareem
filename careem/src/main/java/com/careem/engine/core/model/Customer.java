@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
-@Table(name = "CAB")
+@Table(name = "CUSTOMER")
 @JsonInclude(Include.NON_EMPTY)
 public class Customer extends AbstractEntity {
 	

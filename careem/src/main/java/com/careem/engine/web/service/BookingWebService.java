@@ -167,12 +167,25 @@ public class BookingWebService {
 		return availableDriversList;
 	}
 	
+	public List<Driver> findAvailableDrivers(List<Driver> drivers) {
+		
+		List<Driver> availableDriverList = new ArrayList<>();
+		
+		for(int i = 0; i < drivers.size(); i++) {
+			if(drivers.get(i).getBookingStatus() == "AVAILABLE") {
+				availableDriverList.add(drivers.get(i));
+			}
+		}
+		return availableDriverList;
+	}
+	
 	public BookingModel getDriver(Long customerid, double latitude, double longitude) {
 		
 		BookingModel bookingModel = new BookingModel();
 		List<Driver> driversWithinDistance = getDriverListWithinDistance(latitude, longitude);
+		List<Driver> availableDrivers = findAvailableDrivers(driversWithinDistance);
 		
-		if(!driversWithinDistance.isEmpty()) {
+		if(!availableDrivers.isEmpty()) {
 			
 			Driver minimumWageDriver = findMinimumWageDriver(driversWithinDistance);
 			

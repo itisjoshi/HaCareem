@@ -11,6 +11,12 @@ import com.careem.engine.core.model.Driver;
 
 public interface BookingRepository extends CrudRepository<Booking, Long> {
 
+	@Query("SELECT booking FROM "
+			+ "Booking booking "
+			+ "LEFT JOIN FETCH booking.driver driver "
+			+ "LEFT JOIN FETCH driver.cab cab "
+			+ "LEFT JOIN FETCH booking.customer customer "
+			+ "WHERE booking.id = ?1")
 	public Booking findById(Long id);
 	
 	@Query("SELECT booking FROM "

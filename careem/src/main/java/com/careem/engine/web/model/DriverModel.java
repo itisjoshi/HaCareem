@@ -20,6 +20,16 @@ public class DriverModel {
 
 	private Long cabid;
 	
+	private Long seatsCount;
+	
+	public Long getSeatsCount() {
+		return seatsCount;
+	}
+
+	public void setSeatsCount(Long seatsCount) {
+		this.seatsCount = seatsCount;
+	}
+
 	private CabType cabType;
 	
 	public String gender;

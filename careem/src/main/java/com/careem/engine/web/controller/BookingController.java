@@ -28,10 +28,11 @@ public class BookingController {
 		return bookingWebService.generateCost(id);
 	}
 
-	@RequestMapping(value = "/updatedrop/{bookingid}/{latitude}/{longitude}", method = RequestMethod.GET)
+	@RequestMapping(value = "/updatedrop/{bookingid}/{latitude}/{longitude}/drop", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody BookingModel updateDropTime(@PathVariable("bookingid") Long id, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
-		return bookingWebService.updateDropTime(id, latitude, longitude);
+		bookingWebService.updateDropTime(id, latitude, longitude);
+		return bookingWebService.generateCost(id);
 	}
 
 	@RequestMapping(value = "/updaterating/{bookingid}/{rating}", method = RequestMethod.GET)
@@ -40,21 +41,21 @@ public class BookingController {
 		return bookingWebService.updateRating(id, rating);
 	}
 
-	@RequestMapping(value = "/updatecablocation/{driverid}/{latitude}/{longitude}", method = RequestMethod.GET)
+	@RequestMapping(value = "/updatecablocation/{driverid}/{latitude}/{longitude}/book", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public @ResponseBody void updatecabCurrentLocation(@PathVariable("driverid") Long id, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
-		bookingWebService.updatecabCurrentLocation(id, latitude, longitude);
+	public @ResponseBody DriverModel updatecabCurrentLocation(@PathVariable("driverid") Long id, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
+		return bookingWebService.updatecabCurrentLocation(id, latitude, longitude);
 	}
 	
-	@RequestMapping(value = "/getcablocation/{driverid}/{latitude}/{longitude}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getcablocation/{driverid}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public @ResponseBody HashMap<String, Double> getcabCurrentLocation(@PathVariable("id") Long id) {
-		return bookingWebService.getcabCurrentLocation(id);
+	public @ResponseBody HashMap<String, Double> getcabCurrentLocation(@PathVariable("driverid") Long driverid) {
+		return bookingWebService.getcabCurrentLocation(driverid);
 	}
 	
-	@RequestMapping(value = "/cancelbooking/{driverid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cancelbooking/{bookingid}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public @ResponseBody void cancelbooking(@PathVariable("id") Long id) {
+	public @ResponseBody void cancelbooking(@PathVariable("bookingid") Long id) {
 		bookingWebService.cancelbooking(id);
 	}
 

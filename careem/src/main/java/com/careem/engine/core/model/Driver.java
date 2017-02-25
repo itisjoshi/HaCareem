@@ -31,8 +31,8 @@ public class Driver extends AbstractEntity {
 	@JoinColumn(name = "USERID")
 	private User user;
 	
-	@OneToOne(targetEntity=Cab.class,cascade=CascadeType.ALL)
-	@JoinColumn(name="CABID",referencedColumnName="ID")
+	@OneToOne
+	@JoinColumn(name="CABID")
 	private Cab cab;
 	
 	@Column(name = "GENDER", length = 250)

@@ -21,6 +21,7 @@ import com.careem.engine.core.service.BookingService;
 import com.careem.engine.core.service.CustomerService;
 import com.careem.engine.core.service.DriverService;
 import com.careem.engine.web.model.BookingModel;
+import com.careem.engine.web.model.DriverModel;
 
 @Component
 public class BookingWebService {
@@ -49,7 +50,7 @@ public class BookingWebService {
 		    	double driver2Wage = bookingService.getDriverCurrentDayWage(new Date(), driver2.getId());
 		        return (int) driver1Wage - (int) driver2Wage;
 		    }});
-		return drivers.size() > 0 && drivers.get(0).equals(drivers.get(1)) ? null : drivers.get(0);
+		return drivers.size() > 1 && drivers.get(0).equals(drivers.get(1)) ? null : drivers.get(0);
 	}
 	
 	public Driver findMaximumWaitedTimeDriver(List<Driver> drivers) {
@@ -150,14 +151,18 @@ public class BookingWebService {
 		List<Driver> availableDriversList = new ArrayList<>();
 		
 		for(int i = 0; i < drivers.size(); i++) {
-			
-			double driverLatitude = drivers.get(i).latitude, driverLongitude = drivers.get(i).longitude;
-			
-			boolean driverFound = minimumDistanceDriverFinder(customerLatitude, customerLongitude, driverLatitude, driverLongitude);
-			
-			if(driverFound) {
-				availableDriversList.add(drivers.get(i));
-			} 
+			if(drivers.get(i) != null) {
+				if(drivers.get(i).latitude == null) {
+					continue;
+				} 
+				double driverLatitude = drivers.get(i).latitude, driverLongitude = drivers.get(i).longitude;
+				
+				boolean driverFound = minimumDistanceDriverFinder(customerLatitude, customerLongitude, driverLatitude, driverLongitude);
+				
+				if(driverFound) {
+					availableDriversList.add(drivers.get(i));
+				} 
+			}
 		}
 		return availableDriversList;
 	}
@@ -214,7 +219,9 @@ public class BookingWebService {
 		driver.setLatitude(latitude);
 		driver.setLongitude(longitude);
 		driver.setBookingStatus("NOTAVAILABLE");
-		driverService.save(driver);
+		driver = driverService.save(driver);
+		booking.setDriver(driver);
+		bookingModel = convertBookingToBookingModel(booking);
 		return bookingModel;
 	}
 
@@ -268,14 +275,36 @@ public class BookingWebService {
 		return convertBookingToBookingModel(booking);
 	}
 
-	public BookingModel updatecabCurrentLocation(Long id, double latitude, double longitude) {
+	public DriverModel updatecabCurrentLocation(Long id, double latitude, double longitude) {
 		// TODO Auto-generated method stub
-		return null;
+		Driver driver = driverService.findById(id);
+		driver.setLatitude(latitude);
+		driver.setLongitude(longitude);
+		driver = driverService.save(driver);
+		DriverModel driverModel = new DriverModel();
+		driverModel.setDriverId(driver.getId());
+		driverModel.setEmail(driver.getUser().getEmail());
+		driverModel.setGender(driver.getUser().getGender());
+		driverModel.setName(driver.getUser().getName());
+		driverModel.setUserId(driver.getUser().getId());
+		driverModel.setBookingStatus(driver.getBookingStatus());
+		driverModel.setCabid(driver.getCab().getId());
+		driverModel.setCabType(driver.getCab().getCabType());
+		driverModel.setLastDriveFinishedDate(driver.getLastDriveFinishedDate());
+		driverModel.setLatitude(driver.getLatitude());
+		driverModel.setLongitude(driver.getLongitude());
+		driverModel.setRating(driver.getRating());
+		return driverModel;
 	}
 
 	public HashMap<String, Double> getcabCurrentLocation(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		HashMap<String, Double> hmap = new HashMap<>();
+		Driver driver = driverService.findById(id);
+		hmap.put("Latitude", driver.getLatitude());
+		hmap.put("longitude", driver.getLongitude());
+		hmap.put("DriverId", id + 0.0);
+		return hmap;
 	}
 
 	private BookingModel convertBookingToBookingModel(Booking booking) {

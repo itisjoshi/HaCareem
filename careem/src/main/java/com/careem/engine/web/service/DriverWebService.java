@@ -61,9 +61,11 @@ public class DriverWebService {
 		Driver driver = new Driver();
 		driver.setUser(user);
 		driver.setBookingStatus("AVAILABLE");
-		Cab cab = cabService.findById(driverModel.getCabid());
+		Cab cab = new Cab();
+		cab.setCabType(driverModel.getCabType());
+		cab.setSeatsCount(driverModel.getSeatsCount());
+		cab = cabService.save(cab);
 		driver.setCab(cab);
-		driver.setLastDriveFinishedDate(new Date());
 		driver.setRating(driverModel.getRating());
 		driver.setLatitude(driverModel.getLatitude());
 		driver.setLongitude(driverModel.getLongitude());

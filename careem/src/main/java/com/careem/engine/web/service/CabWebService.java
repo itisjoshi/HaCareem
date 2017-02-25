@@ -26,6 +26,7 @@ public class CabWebService {
 			CabModel cabModel = new CabModel();
 			cabModel.setCabType(cab.getCabType());
 			cabModel.setSeatsCount(cab.getSeatsCount());
+			cabModel.setCabId(cab.getId());
 			cabModels.add(cabModel);
 		}
 		return cabModels;
@@ -33,10 +34,11 @@ public class CabWebService {
 
 	public CabModel createCab(CabModel cabModel) {
 		Cab cab = new Cab();
-		cab.setSeatsCount(cab.getSeatsCount());
-		cab.setCabType(cab.getCabType());
+		cab.setSeatsCount(cabModel.getSeatsCount());
+		cab.setCabType(cabModel.getCabType());
 		cab = cabService.save(cab);		
 		cabModel = new CabModel();
+		cabModel.setCabId(cab.getId());
 		cabModel.setCabType(cab.getCabType());
 		cabModel.setSeatsCount(cab.getSeatsCount());
 		return cabModel;
@@ -48,6 +50,7 @@ public class CabWebService {
 		cab.setCabType(cab.getCabType());
 		cab = cabService.save(cab);		
 		cabModel = new CabModel();
+		cabModel.setCabId(cab.getId());
 		cabModel.setCabType(cab.getCabType());
 		cabModel.setSeatsCount(cab.getSeatsCount());
 		return cabModel;

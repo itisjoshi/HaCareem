@@ -28,6 +28,22 @@ Completeness (Demoable)
 
 
 
+
+ 
+Project is all about booking a ride. Here We are priortized things for booking a cab based on the following criteria such as
+Minimum wage of the driver on that current day, 
+Longest waiting time of the driver and shortest distance driver.
+We covered the distance of 1 Km from the current customer location based on the latitude and longitude
+We will search the cab and allocate based on the above criteria. 
+The user setting preferences can be done apart from the 
+default settings like switching driver gender and Minimum driver rating as well. 
+
+In order to prevent Race Condition upon booking a Queueing system is used for a specific driver.
+The location of the driver is get trakced for every 30 seconds and we are using a Amazon SQS queue to process the location queue. We are using Redis to keep track of the moving car with the customer latitude and longitude until the destination is reached. We can lively locate a vehicle. After the destination is reached location data is moved to mysql from redis.
+
+
+
+
 API Calls:
 
 Returns UserModel GET /user/list 

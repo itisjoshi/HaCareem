@@ -157,7 +157,7 @@ CabType {
 |BookingModel|GET        |/booking/updaterating/{bookingid}/{rating} |
 |BookingModel|GET        |/booking/updatecablocation/{driverid}/{latitude}/{longitude}/book |
 |HashMap<String, Double>| GET | /book/getcablocation/{driverid}|
-|void| GET | /book/cancelbooking/{driverid}|
+|void| GET | /book/cancelbooking/{bookingid}|
 
 
 ```javascript

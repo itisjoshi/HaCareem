@@ -151,12 +151,13 @@ CabType {
 
 |Return Type|Request Method|URL Mapping  |
 |-----------|--------------|------------ |
-|BookingModel|GET           |/booking/book/{customerid}/{latitude}/{longitude}   |
-|BookingModel|GET          |booking/book/generatecost/{id} |
-|BookingModel|GET        |/booking/book/updatedrop/{id}/{latitude}/{longitude} |
-|BookingModel|GET        |/booking/book/updaterating/{id}/{rating} |
-|BookingModel|GET        |/booking/book/updatecablocation/{id}/{latitude}/{longitude} |
-|HashMap<String, Double>| GET | /book/getcablocation/{id}|
+|BookingModel|GET           |/booking/{customerid}/{latitude}/{longitude}/book   |
+|BookingModel|GET          |booking/generatecost/{bookingid} |
+|BookingModel|GET        |/booking/updatedrop/{bookingid}/{latitude}/{longitude} |
+|BookingModel|GET        |/booking/updaterating/{bookingid}/{rating} |
+|BookingModel|GET        |/booking/updatecablocation/{driverid}/{latitude}/{longitude} |
+|HashMap<String, Double>| GET | /book/getcablocation/{driverid}|
+|void| GET | /book/cancelbooking/{driverid}|
 
 # Contributors
 

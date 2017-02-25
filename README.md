@@ -136,7 +136,6 @@ Returns HashMap<String, Double> GET /book/getcablocation/{id}
 
 # Contributors
 
+1. [Prathap Manohar Joshi](https://www.linkedin.com/in/pmjoshi) : https://github.com/itisjoshi
 
-1. Prathap Manohar Joshi : https://github.com/itisjoshi
-
-2. Karthekeyan Devanand : https://github.com/Karthekeyan-Engine
+2. [Karthekeyan Devanand](https://www.linkedin.com/in/karthekeyandevanand) : https://github.com/Karthekeyan-Engine

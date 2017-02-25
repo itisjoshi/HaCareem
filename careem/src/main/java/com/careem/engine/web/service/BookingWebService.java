@@ -1,5 +1,7 @@
 package com.careem.engine.web.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +39,16 @@ public class BookingWebService {
 		Booking booking = bookingService.findById(id);
 		booking.setRating(rating);
 		booking = bookingService.save(booking);
+		return null;
+	}
+
+	public BookingModel updatecabCurrentLocation(Long id, double latitude, double longitude) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public HashMap<String, Double> getcabCurrentLocation(Long id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

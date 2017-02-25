@@ -3,10 +3,10 @@ Code for Careem Hackathon Event Bangalore India 2017
 
 # Task:
 
-# Book A Ride
+## Book A Ride
 One of the goals we strive towards at Careem is creating a perfect booking experience for our Customers- extremely reliable ETAS, accurate locations, best Captains and so on. Build a ride dispatching platform that collects location updates from ‘drivers on the move’ to later be used as data to dispatch the best driver to a customer that wants to book a ride. It is up to you to creatively decide the features, capability and complexity of the platform (Eg: Moving cars on the map, multiple bookings per driver etc.)
 
-# Things to Think About
+## Things to Think About
 What REST frameworks you will use
 In-memory vs. persistent storage
 Testing (unit testing/integration testing/mocking etc.)
@@ -17,14 +17,14 @@ Horizontal scaling
 Design patterns, dependency injection etc.
 We will be judging you on the following criteria:
 
-# Judging Criteria
-Innovativeness
-Architecture
-Manageability and Scalability
-Application Performance
-Code Toxicity
-Robustness
-Completeness (Demoable)
+## Judging Criteria
+..* Innovativeness
+..* Architecture
+..* Manageability and Scalability
+..* Application Performance
+..* Code Toxicity
+..* Robustness
+..* Completeness (Demoable)
 
 
 
@@ -41,21 +41,22 @@ default settings like switching driver gender and Minimum driver rating as well.
 In order to prevent Race Condition upon booking a Queueing system is used for a specific driver.
 The location of the driver is get trakced for every 30 seconds and we are using a Amazon SQS queue to process the location queue. We are using Redis to keep track of the moving car with the customer latitude and longitude until the destination is reached. We can lively locate a vehicle. After the destination is reached location data is moved to mysql from redis.
 
-# Technology & Architecture used:
+## Technology & Architecture used:
 
-SPRING MVC
-Hibernate
-MySql(All Meta informations)
-Redis(frequest changes to the current location of the cab is stored here.)
-SQS(Location Changes Information will be stored by lining up in Amazon SQS)
-Queuing System(To Prevent Race Condition, an internal queuing system is used)
+1. SPRING MVC
+2. Hibernate
+3. MySql(All Meta informations)
+4. Redis(frequest changes to the current location of the cab is stored here.)
+5. SQS(Location Changes Information will be stored by lining up in Amazon SQS)
+6. Queuing System(To Prevent Race Condition, an internal queuing system is used)
 
-# Installation 
+## Installation 
 
-mvn install
-mvn deploy
+..* mvn clean
+..* mvn install
+..* mvn deploy
 
-# API Calls:
+## API Calls:
 
 Returns UserModel GET /user/list 
 Returns UserModel POST /user/create 
@@ -136,6 +137,6 @@ Returns HashMap<String, Double> GET /book/getcablocation/{id}
 # Contributors
 
 
-Prathap Manohar Joshi : https://github.com/itisjoshi
+1. Prathap Manohar Joshi : https://github.com/itisjoshi
 
-Karthekeyan Devanand : https://github.com/Karthekeyan-Engine
+2. Karthekeyan Devanand : https://github.com/Karthekeyan-Engine

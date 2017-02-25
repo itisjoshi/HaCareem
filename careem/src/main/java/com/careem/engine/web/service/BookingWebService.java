@@ -15,13 +15,27 @@ public class BookingWebService {
 	@Autowired
 	private BookingService bookingService;
 	
+	public static final int PER_KILOMETER_RATE_MINI = 7;
+	public static final int PER_KILOMETER_RATE_PRIME = 15;
+	
 	public BookingModel getDriver(Long customerid, double latitude, double longitude) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public BookingModel generateCost(Long id) {
-		// TODO Auto-generated method stub
+		
+		Booking booking = bookingService.findById(id);
+		double totalCost = 0.0;
+		
+		int distance = Integer.parseInt(booking.getDistanceTravelled());
+		String cabType = booking.getDriver().getCab().getCabType().toString();
+		
+		switch(cabType) {
+			case "MINI" : totalCost = distance * PER_KILOMETER_RATE_MINI; break;
+			case "PRIME" : totalCost = distance * PER_KILOMETER_RATE_PRIME; break;
+		}
+		booking.setCost(totalCost);	
 		return null;
 	}
 

@@ -39,7 +39,7 @@ The user setting preferences can be done apart from the
 default settings like switching driver gender and Minimum driver rating as well. 
 
 In order to prevent Race Condition upon booking a Queueing system is used for a specific driver.
-The location of the driver is get trakced for every 30 seconds and we are using a Amazon SQS queue to process the location queue. We are using Redis to keep track of the moving car with the customer latitude and longitude until the destination is reached. We can lively locate a vehicle. After the destination is reached location data is moved to mysql from redis.
+The location of the driver is get trakced for every 5 seconds and we are using a Amazon SQS queue to process the location queue. We are using Redis to keep track of the moving car with the customer latitude and longitude until the destination is reached. We can lively locate a vehicle. After the destination is reached location data is moved to mysql from redis.
 
 ## Technology & Architecture used:
 
@@ -63,19 +63,19 @@ Returns UserModel POST /user/create
 Returns UserModel PUT /user/edit 
 Returns UserModel DELETE /user/delete 
 
-UserModel:
+`UserModel:
 {
 	Long userId;
 	String name;
 	String email;
-}
+}`
 
 Returns DriverModel GET /driver/list 
 Returns DriverModel POST /driver/create 
 Returns DriverModel PUT /driver/edit 
 Returns DriverModel DELETE /driver/delete 
 
-DriverModel:
+`DriverModel:
 {
 	Long driverId;
 	String bookingStatus;
@@ -89,22 +89,22 @@ DriverModel:
 	String rating;
 	Double latitude;	
 	Double longitude;
-}
+}`
 
 Returns CustomerModel GET /customer/list 
 Returns CustomerModel POST /customer/create 
 Returns CustomerModel PUT /customer/edit 
 Returns CustomerModel DELETE /customer/delete 
 
-CustomerModel: 
+`CustomerModel: 
 {
-  String preference;
-  customerId;
+	String preference;
+	Long customerId;
 	String name;
 	String email;
 	String gender;
 	Long userId;
-}
+}`
 
 
 Returns CustomerModel GET /cab/list 
@@ -112,17 +112,17 @@ Returns CustomerModel POST /cab/create
 Returns CustomerModel PUT /cab/edit 
 Returns CustomerModel DELETE /cab/delete 
 
-CustomerModel
+`CustomerModel
 {
   Long cabId;
   CabType cabType;
   Long seatsCount;
-}
+}`
 
-CabType {
+`CabType {
 	SHARE,
 	PRIME
-}
+}`
 
 
 

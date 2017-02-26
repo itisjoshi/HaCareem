@@ -169,7 +169,7 @@ public class BookingWebService {
 	
 	public List<Driver> findAvailableDrivers(List<Driver> drivers) {
 		
-		List<Driver> availableDriverList = new ArrayList<>();
+		List<Driver> availableDriverList = new ArrayList<Driver>();
 		
 		for(int i = 0; i < drivers.size(); i++) {
 			if((drivers.get(i).getBookingStatus()).equals("AVAILABLE")) {
@@ -320,7 +320,7 @@ public class BookingWebService {
 
 	public HashMap<String, Double> getcabCurrentLocation(Long id) {
 		// TODO Auto-generated method stub
-		HashMap<String, Double> hmap = new HashMap<>();
+		HashMap<String, Double> hmap = new HashMap<String, Double>();
 		Driver driver = driverService.findById(id);
 		hmap.put("Latitude", driver.getLatitude());
 		hmap.put("longitude", driver.getLongitude());
@@ -367,7 +367,7 @@ public class BookingWebService {
 			distance = 1L;
 		}
 		
-		HashMap<String, String> hmap = new HashMap<>();
+		HashMap<String, String> hmap = new HashMap<String, String>();
 		hmap.put("MINI", (distance * PER_KILOMETER_RATE_MINI) + "");
 		hmap.put("PRIME", "" + (distance * PER_KILOMETER_RATE_PRIME));
 		return hmap;

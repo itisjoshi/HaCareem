@@ -18,7 +18,7 @@ public class UserWebService {
 	private UserService userService;
 
 	public List<UserModel> getAllUsers() {
-		List<UserModel> userModels = new ArrayList<>();
+		List<UserModel> userModels = new ArrayList<UserModel>();
 		List<User> users = userService.findAll();
 		Iterator<User> userIterator = users.iterator();
 		while(userIterator.hasNext()) {

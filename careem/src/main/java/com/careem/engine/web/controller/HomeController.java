@@ -18,7 +18,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Map<String, String> home(Locale locale) {
 		logger.info("Called Home: " + locale);
-		Map<String, String> object = new HashMap<>();
+		Map<String, String> object = new HashMap<String, String>();
 		object.put("Name", "Engine.Web");
 		return object;
 	}

@@ -55,7 +55,7 @@ public class BookingWebService {
 	
 	public Driver findMaximumWaitedTimeDriver(List<Driver> drivers) {
 		
-		Map<Long, Long> millisMap = new HashMap<>();
+		Map<Long, Long> millisMap = new HashMap<Long, Long>();
 		
 		long fiveMinutesToMills = 300000L;
 		int numberOfDrivers = 0;

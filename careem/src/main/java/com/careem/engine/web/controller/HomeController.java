@@ -19,7 +19,9 @@ public class HomeController {
 	public Map<String, String> home(Locale locale) {
 		logger.info("Called Home: " + locale);
 		Map<String, String> object = new HashMap<String, String>();
-		object.put("Name", "Engine.Web");
+		object.put("Company Name : ", "Careem");
+		object.put("Event Name : ", "HaCareem");
+		object.put("Git Hub URL : ", "https://github.com/itisjoshi/HaCareem");
 		return object;
 	}
 }

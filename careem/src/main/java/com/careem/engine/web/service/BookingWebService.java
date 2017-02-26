@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.careem.engine.core.model.Booking;
+import com.careem.engine.core.model.CabType;
 import com.careem.engine.core.model.Customer;
 import com.careem.engine.core.model.Driver;
 import com.careem.engine.core.service.BookingService;
@@ -170,23 +171,23 @@ public class BookingWebService {
 		return availableDriversList;
 	}
 	
-	public List<Driver> findAvailableDrivers(List<Driver> drivers) {
+	public List<Driver> findAvailableDrivers(List<Driver> drivers, CabType cabType) {
 		
 		List<Driver> availableDriverList = new ArrayList<Driver>();
 		
 		for(int i = 0; i < drivers.size(); i++) {
-			if((drivers.get(i).getBookingStatus()).equals("AVAILABLE")) {
+			if((drivers.get(i).getBookingStatus()).equals("AVAILABLE") && (drivers.get(i).getCab().getCabType().equals(cabType))) {
 				availableDriverList.add(drivers.get(i));
 			}
 		}
 		return availableDriverList;
 	}
 	
-	public BookingModel getDriver(Long customerid, double latitude, double longitude) {
+	public BookingModel getDriver(Long customerid, double latitude, double longitude, CabType cabType) {
 		
 		BookingModel bookingModel = new BookingModel();
 		List<Driver> driversWithinDistance = getDriverListWithinDistance(latitude, longitude);
-		List<Driver> availableDrivers = findAvailableDrivers(driversWithinDistance);
+		List<Driver> availableDrivers = findAvailableDrivers(driversWithinDistance, cabType);
 		
 		if(!availableDrivers.isEmpty()) {
 			

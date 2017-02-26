@@ -17,10 +17,10 @@ public class BookingController {
 	@Autowired
 	private BookingWebService bookingWebService;
 	
-	@RequestMapping(value = "/{customerid}/{latitude}/{longitude}/book", method = RequestMethod.GET)
+	@RequestMapping(value = "/{customerid}/{latitude}/{longitude}/{cabtype}/book", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public @ResponseBody BookingModel getDriver(@PathVariable("customerid") Long customerid, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
-		return bookingWebService.getDriver(customerid, latitude, longitude);
+	public @ResponseBody BookingModel getDriver(@PathVariable("customerid") Long customerid, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude, @PathVariable("cabtype") CabType cabType) {
+		return bookingWebService.getDriver(customerid, latitude, longitude, cabType);
 	}
 
 	@RequestMapping(value = "/generatecost/{bookingid}", method = RequestMethod.GET)

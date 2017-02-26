@@ -360,9 +360,9 @@ public class BookingWebService {
 	public HashMap<String, String> generateCost(double fromlatitude, double fromlongitude, double tolatitude,
 			double tolongitude) {
 		// TODO Auto-generated method stub
-		Long distance;
+		double distance;
 		try {
-			distance = Long.parseLong(minimumDistanceFinder(fromlatitude, fromlongitude, fromlatitude, tolongitude) + "");
+			distance = minimumDistanceFinder(fromlatitude, fromlongitude, fromlatitude, tolongitude);
 		} catch(NumberFormatException ex) {
 			distance = 1L;
 		}

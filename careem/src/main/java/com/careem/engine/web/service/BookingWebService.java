@@ -115,7 +115,7 @@ public class BookingWebService {
 	public Driver findShortestDistanceDriver(List<Driver> drivers, double customerLatitude, double customerLongitude) {
 		
 		int minimumDistance = Integer.MIN_VALUE;
-		Map<Long, Integer> treeMap = new TreeMap<>();
+		Map<Long, Integer> treeMap = new TreeMap<Long, Integer>();
 		
 		for(int i = 0; i < drivers.size(); i++) {
 			

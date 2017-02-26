@@ -1,5 +1,12 @@
 package com.careem.engine.web.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,6 +20,9 @@ import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import com.careem.engine.core.model.Booking;
 import com.careem.engine.core.model.CabType;
@@ -21,8 +31,10 @@ import com.careem.engine.core.model.Driver;
 import com.careem.engine.core.service.BookingService;
 import com.careem.engine.core.service.CustomerService;
 import com.careem.engine.core.service.DriverService;
+import com.careem.engine.web.errorcodes.BadRequestException;
 import com.careem.engine.web.model.BookingModel;
 import com.careem.engine.web.model.DriverModel;
+import com.careem.engine.web.model.LocationObject;
 
 @Component
 public class BookingWebService {
@@ -181,6 +193,44 @@ public class BookingWebService {
 			}
 		}
 		return availableDriverList;
+	}
+
+	public LocationObject getLocation(String ipAddress) throws IOException {
+			// TODO Auto-generated method stub
+			final String USER_AGENT = "Mozilla/5.0";
+			
+			String url = "http://freegeoip.net/json/"+ipAddress;
+
+			URL obj = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+			con.setRequestMethod("GET");
+//
+//			con.setRequestProperty("User-Agent", USER_AGENT);
+//
+//			con.getResponseCode();
+//
+//			BufferedReader in = new BufferedReader(
+//			        new InputStreamReader(con.getInputStream()));
+//			String inputLine;
+//			StringBuffer response = new StringBuffer();
+//
+//			while ((inputLine = in.readLine()) != null) {
+//				response.append(inputLine);
+//			}
+//			in.close();
+//
+			RestTemplate restTemplate = new RestTemplate();
+			LocationObject locationObject = restTemplate.getForObject(url, LocationObject.class);
+			return locationObject;
+	}
+	
+	public BookingModel getDriver(Long customerid, CabType cabType, String ipAddress) throws IOException {
+		LocationObject locationObject = getLocation(ipAddress);
+		if(locationObject.getLatitude() != null && locationObject.getLongitude() != null) {
+			return getDriver(customerid, locationObject.getLatitude(), locationObject.getLongitude(), cabType);			
+		}
+		throw new BadRequestException("Can't Process IP");
 	}
 	
 	public BookingModel getDriver(Long customerid, double latitude, double longitude, CabType cabType) {

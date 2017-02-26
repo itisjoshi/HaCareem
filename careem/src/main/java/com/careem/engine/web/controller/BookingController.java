@@ -1,10 +1,14 @@
 package com.careem.engine.web.controller;
 
 import com.careem.engine.core.model.CabType;
+import com.careem.engine.web.errorcodes.BadRequestException;
 import com.careem.engine.web.model.*;
 import com.careem.engine.web.service.BookingWebService;
 
+import java.io.IOException;
 import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +25,19 @@ public class BookingController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody BookingModel getDriver(@PathVariable("customerid") Long customerid, @PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude, @PathVariable("cabtype") CabType cabType) {
 		return bookingWebService.getDriver(customerid, latitude, longitude, cabType);
+	}
+
+	@RequestMapping(value = "/{customerid}/{cabtype}/book", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody BookingModel getDriver(@PathVariable("customerid") Long customerid, @PathVariable("cabtype") CabType cabType, HttpServletRequest request) throws IOException {
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+			   ipAddress = request.getRemoteAddr();
+		}
+		if(ipAddress != null && ipAddress != "") {
+			return bookingWebService.getDriver(customerid, cabType, ipAddress);			
+		}
+		throw new BadRequestException("Can't find IP Address");
 	}
 
 	@RequestMapping(value = "/generatecost/{bookingid}", method = RequestMethod.GET)

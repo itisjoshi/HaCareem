@@ -155,8 +155,8 @@ CabType {
 
 |Return Type|Request Method|URL Mapping  |
 |-----------|--------------|------------ |
-|BookingModel|GET           |/booking/{customerid}/{latitude}/{longitude}/book   |
-|BookingModel|GET          |booking/generatecost/{bookingid} |
+|BookingModel|GET           |/booking/{customerid}/{latitude}/{longitude}/{cabtype}/book   |
+|BookingModel|GET          |/booking/generatecost/{bookingid} |
 |BookingModel|GET        |/booking/updatedrop/{bookingid}/{latitude}/{longitude}/drop |
 |BookingModel|GET        |/booking/updaterating/{bookingid}/{rating} |
 |BookingModel|GET        |/booking/updatecablocation/{driverid}/{latitude}/{longitude}/book |

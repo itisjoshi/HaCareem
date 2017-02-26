@@ -35,6 +35,7 @@ public class CustomerWebService {
 			customerModel.setName(customer.getUser().getName());
 			customerModel.setPreference(customer.getPreference());
 			customerModel.setUserId(customer.getUser().getId());
+			customerModel.setDriverGender(customer.getDriverGender());
 			customerModels.add(customerModel);
 		}
 		return customerModels;
@@ -49,6 +50,7 @@ public class CustomerWebService {
 		Customer customer = new Customer();
 		customer.setPreference(customerModel.getPreference());
 		customer.setUser(user);
+		customer.setDriverGender(customerModel.getDriverGender());
 		customer = customerService.save(customer);
 		customerModel.setCustomerId(customer.getId());
 		customerModel.setUserId(user.getId());
@@ -64,6 +66,7 @@ public class CustomerWebService {
 		Customer customer = customerService.findById(customerModel.getCustomerId());
 		customer.setPreference(customerModel.getPreference());
 		customer.setUser(user);
+		customer.setDriverGender(customerModel.getDriverGender());
 		customer = customerService.save(customer);
 		customerModel.setCustomerId(customer.getId());
 		customerModel.setUserId(user.getId());

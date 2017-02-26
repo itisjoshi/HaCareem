@@ -172,7 +172,7 @@ public class BookingWebService {
 		List<Driver> availableDriverList = new ArrayList<>();
 		
 		for(int i = 0; i < drivers.size(); i++) {
-			if(drivers.get(i).getBookingStatus() == "AVAILABLE") {
+			if((drivers.get(i).getBookingStatus()).equals("AVAILABLE")) {
 				availableDriverList.add(drivers.get(i));
 			}
 		}
@@ -268,6 +268,7 @@ public class BookingWebService {
 		driver.setLastDriveFinishedDate(new Date());
 		driver.setLatitude(latitude);
 		driver.setLongitude(longitude);
+		driver.setLastDriveFinishedDate(new Date());
 		driver.setBookingStatus("AVAILABLE");
 		driver = driverService.save(driver);
 		booking.setDriver(driver);

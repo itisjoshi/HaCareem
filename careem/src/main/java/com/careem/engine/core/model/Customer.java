@@ -24,6 +24,17 @@ public class Customer extends AbstractEntity {
 	@Column(name = "PREFERENCE", length = 250)
 	public String preference;
 
+	@Column(name = "DRIVERGENDER", length = 250)
+	public String driverGender;
+
+	public String getDriverGender() {
+		return driverGender;
+	}
+
+	public void setDriverGender(String driverGender) {
+		this.driverGender = driverGender;
+	}
+
 	@Column(name = "LASTDRIVE")
 	private Date lastDrive;
 

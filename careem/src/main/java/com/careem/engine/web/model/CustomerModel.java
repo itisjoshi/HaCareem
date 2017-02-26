@@ -14,6 +14,16 @@ public class CustomerModel {
 
 	public Long userId;
 
+	public String driverGender;
+
+	public String getDriverGender() {
+		return driverGender;
+	}
+
+	public void setDriverGender(String driverGender) {
+		this.driverGender = driverGender;
+	}
+
 	public String getPreference() {
 		return preference;
 	}

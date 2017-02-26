@@ -109,7 +109,7 @@ public class BookingWebService {
 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-		return EARTH_RADIUS * c * 1000; //  Return distance in meters
+		return EARTH_RADIUS * c; //  Return distance in kilometers
 	}
 
 	public Driver findShortestDistanceDriver(List<Driver> drivers, double customerLatitude, double customerLongitude) {

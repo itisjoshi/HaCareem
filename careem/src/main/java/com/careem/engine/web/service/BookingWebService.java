@@ -148,7 +148,7 @@ public class BookingWebService {
 	public List<Driver> getDriverListWithinDistance(double customerLatitude, double customerLongitude) {
 		
 		List<Driver> drivers = driverService.findAll();
-		List<Driver> availableDriversList = new ArrayList<>();
+		List<Driver> availableDriversList = new ArrayList<Driver>();
 		
 		for(int i = 0; i < drivers.size(); i++) {
 			if(drivers.get(i) != null) {

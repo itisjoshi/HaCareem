@@ -25,12 +25,12 @@ public class Booking extends AbstractEntity {
 	@Column(name = "LASTDRIVEFINISHEDDATE")
 	private Date lastDriveFinishedDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "CUSTOMERID")
 	@JsonBackReference(value="booking-customer")
 	private Customer customer;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "DRIVERID")
 	@JsonBackReference(value="booking-driver")
 	private Driver driver;

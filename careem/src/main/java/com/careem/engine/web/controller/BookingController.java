@@ -1,5 +1,6 @@
 package com.careem.engine.web.controller;
 
+import com.careem.engine.core.model.CabType;
 import com.careem.engine.web.model.*;
 import com.careem.engine.web.service.BookingWebService;
 
@@ -57,6 +58,12 @@ public class BookingController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody void cancelbooking(@PathVariable("bookingid") Long id) {
 		bookingWebService.cancelbooking(id);
+	}
+
+	@RequestMapping(value = "/estimate/{fromlatitude}/{fromlongitude}/{tolatitude}/{tolongitude}/cost", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public @ResponseBody HashMap<String, String> estimate(@PathVariable("fromlatitude") double fromlatitude, @PathVariable("fromlongitude") double fromlongitude, @PathVariable("tolatitude") double tolatitude, @PathVariable("tolongitude") double tolongitude) {
+		return bookingWebService.generateCost(fromlatitude, fromlongitude, tolatitude, tolongitude);
 	}
 
 }

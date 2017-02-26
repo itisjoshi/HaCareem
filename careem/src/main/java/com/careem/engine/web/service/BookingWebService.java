@@ -242,10 +242,16 @@ public class BookingWebService {
 		BookingModel bookingModel = new BookingModel();
 		Booking booking = bookingService.findById(id);
 		double totalCost = 0.0;
-		if(booking.getCost() != null || booking.getCost() != 0) {
+		if(booking.getCost() != null) {
 			return bookingModel;
 		}
-		Long distance = Long.parseLong(booking.getDistanceTravelled());
+		booking.setDistanceTravelled((minimumDistanceFinder(booking.getCustomerFromLatitude(), booking.getCustomerFromlongitude(), booking.getDriverEndLatitude(), booking.getDriverEndLongitude())) + ""); 
+		Long distance;
+		try {
+			distance = Long.parseLong(booking.getDistanceTravelled());
+		} catch(NumberFormatException ex) {
+			distance = 1L;
+		}
 		String cabType = booking.getDriver().getCab().getCabType().toString();
 		
 		switch(cabType) {
@@ -264,7 +270,8 @@ public class BookingWebService {
 		booking.setDriverEndLatitude(latitude);
 		booking.setDriverEndLongitude(longitude);
 		booking = bookingService.save(booking);
-		Driver driver = driverService.findById(booking.getDriver().getId());
+		Long driverId = booking.getDriver().getId();
+		Driver driver = driverService.findById(driverId);
 		driver.setLastDriveFinishedDate(new Date());
 		driver.setLatitude(latitude);
 		driver.setLongitude(longitude);
@@ -348,6 +355,22 @@ public class BookingWebService {
 		driver.setBookingStatus("AVAILABLE");
 		driver = driverService.save(driver);
 		bookingService.delete(booking);
+	}
+
+	public HashMap<String, String> generateCost(double fromlatitude, double fromlongitude, double tolatitude,
+			double tolongitude) {
+		// TODO Auto-generated method stub
+		Long distance;
+		try {
+			distance = Long.parseLong(minimumDistanceFinder(fromlatitude, fromlongitude, fromlatitude, tolongitude) + "");
+		} catch(NumberFormatException ex) {
+			distance = 1L;
+		}
+		
+		HashMap<String, String> hmap = new HashMap<>();
+		hmap.put("MINI", (distance * PER_KILOMETER_RATE_MINI) + "");
+		hmap.put("PRIME", "" + (distance * PER_KILOMETER_RATE_PRIME));
+		return hmap;
 	}
 
 }

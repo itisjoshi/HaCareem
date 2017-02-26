@@ -49,6 +49,7 @@ The location of the driver is get trakced for every 5 seconds and we are using a
 4. Redis(frequest changes to the current location of the cab is stored here.)
 5. SQS(Location Changes Information will be stored by lining up in Amazon SQS)
 6. Queuing System(To Prevent Race Condition, an internal queuing system is used)
+7. JUnit(For unit run cases)
 
 ## Installation 
 

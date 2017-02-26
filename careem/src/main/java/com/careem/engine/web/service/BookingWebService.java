@@ -37,7 +37,10 @@ public class BookingWebService {
 	
 	public static final int PER_KILOMETER_RATE_MINI = 7; // Rate Per Kilometer - Mini
 	public static final int PER_KILOMETER_RATE_PRIME = 15; // Rate Per Kilometer - Prime
-	
+
+	public static final int PER_KILOMETER_RATE_LUXURY = 100; // Rate Per Kilometer - Mini
+	public static final int PER_KILOMETER_RATE_SHARE = 10; // Rate Per Kilometer - Prime
+
 	public static final double INVITE_RADIUS = 1.00; // Radius Limits in Kilometers (KM) to invite friends
 	public static final double EARTH_RADIUS = 6378.137; // Radius of earth in Kilometers (KM)
 	
@@ -257,6 +260,8 @@ public class BookingWebService {
 		switch(cabType) {
 			case "MINI" : totalCost = distance * PER_KILOMETER_RATE_MINI; break;
 			case "PRIME" : totalCost = distance * PER_KILOMETER_RATE_PRIME; break;
+			case "SHARE" : totalCost = distance * PER_KILOMETER_RATE_SHARE; break;
+			case "LUXURY" : totalCost = distance * PER_KILOMETER_RATE_LUXURY; break;
 		}
 		booking.setCost(totalCost);	
 		booking.setDistanceTravelled(distance.toString());
@@ -368,8 +373,10 @@ public class BookingWebService {
 		}
 		
 		HashMap<String, String> hmap = new HashMap<String, String>();
-		hmap.put("MINI", (distance * PER_KILOMETER_RATE_MINI) + "");
-		hmap.put("PRIME", "" + (distance * PER_KILOMETER_RATE_PRIME));
+		hmap.put("MINI_RATE", (distance * PER_KILOMETER_RATE_MINI) + "");
+		hmap.put("PRIME_RATE", "" + (distance * PER_KILOMETER_RATE_PRIME));
+		hmap.put("LUXURY_RATE", "" + (distance * PER_KILOMETER_RATE_LUXURY));
+		hmap.put("SHARE_RATE", "" + (distance * PER_KILOMETER_RATE_SHARE));
 		return hmap;
 	}
 

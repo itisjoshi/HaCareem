@@ -1,6 +1,9 @@
 # HaCareem
 Code for Careem Hackathon Event Bangalore India 2017
 
+# Live Demo
+
+The code has been delpoyed in AWS you can see here live: http://ec2-35-167-86-187.us-west-2.compute.amazonaws.com/
 # Task:
 
 ## Book A Ride

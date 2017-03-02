@@ -205,24 +205,23 @@ public class BookingWebService {
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 			con.setRequestMethod("GET");
-//
-//			con.setRequestProperty("User-Agent", USER_AGENT);
-//
-//			con.getResponseCode();
-//
-//			BufferedReader in = new BufferedReader(
-//			        new InputStreamReader(con.getInputStream()));
-//			String inputLine;
-//			StringBuffer response = new StringBuffer();
-//
-//			while ((inputLine = in.readLine()) != null) {
-//				response.append(inputLine);
-//			}
-//			in.close();
-//
-			RestTemplate restTemplate = new RestTemplate();
-			LocationObject locationObject = restTemplate.getForObject(url, LocationObject.class);
-			return locationObject;
+
+			con.setRequestProperty("User-Agent", USER_AGENT);
+
+			con.getResponseCode();
+
+			BufferedReader in = new BufferedReader(
+			        new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+//			LocationObject locationObject = new LocationObject(response);
+//			return locationObject;
+			return null;
 	}
 	
 	public BookingModel getDriver(Long customerid, CabType cabType, String ipAddress) throws IOException {
